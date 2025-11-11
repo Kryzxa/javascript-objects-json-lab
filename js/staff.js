@@ -1,36 +1,17 @@
 (() => {
-    console.info("ready");
-    var bobDetails = {
-        name : 'Bob',
-        age : 21,
-        qualifications: {
-        gsce : true,
-        alevels : true,
-        degree : false
-        }
-     }
-     var qualifications = [
-        {
-           subject : "Maths",
-           grade : "A"
-        },
-        {
-           subject : "English",
-           grade : "B"
-        }, 
-        {
-           subject : "French",
-           grade : "C"
-        },
-        {
-           subject : "Physics",
-           grade : "B"
-        
-        }
-        ];
-        qualifications.forEach(function(element) {
-            console.info(element.subject);
-            console.info(element.grade);
-            });
-     console.dir(bobDetails);
+    const staffable = document.getElementById("staffable")
+    fetch("data/staff.json")
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((item) => {
+            const row = document.createElement("tr");
+            const nameCell = document.createElement("td");
+            const emailCell = document.createElement("td");
+            nameCell.textContent = `${item.first_name}  ${item.last_name}`;
+            emailCell.textContent = item.email;
+            row.appendChild(nameCell);
+            row.appendChild(emailCell);
+            staffTable.appendChild(row);
+          });
+      })
     })();
